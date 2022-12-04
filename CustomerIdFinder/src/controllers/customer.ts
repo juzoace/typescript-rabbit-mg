@@ -6,7 +6,7 @@ class CustomerController {
 
     getCustomersLocatedWithinRadius (req: Request, res: Response) {
         
-        // Read data from the text file
+        // Read data from the text file 
         const closeCustomerId = CustomerUtility.getDataFromFile();
 
         // Send result to message broker

@@ -9,3 +9,6 @@ package-lock.json
 
 # ignore environment variables
 .env
+
+# ignore logs
+logs
