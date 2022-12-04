@@ -7,7 +7,9 @@ class CustomerController {
     async getCustomersLocatedWithinRadius (req: Request, res: Response) {
 
         // Read data from the text file (CustomerUtility)
-
+        const closeCustomerId =  CustomerUtility.getDataFromFile();
+        console.log(closeCustomerId)
+        // 
         // put data into some sort of data structure
 
         // Perform your check and save result into a data structure
@@ -15,7 +17,7 @@ class CustomerController {
         // Send result to message broker
         const messageToBroker = new publisher();
         messageToBroker.init();
-        messageToBroker.send('customer-ids')
+        messageToBroker.send(closeCustomerId)
         res.json({
 
         })
