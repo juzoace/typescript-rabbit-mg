@@ -50,7 +50,7 @@ class MessageBroker {
     setTimeout(() => {
 
     if (this.channel) {
-        sendQueueStatus = this.channel.sendToQueue(this.queues, Buffer.from(msg));
+        sendQueueStatus = this.channel.sendToQueue(this.queues, Buffer.from(JSON.stringify(msg)));
         if ( sendQueueStatus ) {
 
             res.status(200).json({
