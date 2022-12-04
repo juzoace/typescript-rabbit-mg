@@ -1,7 +1,7 @@
 import amqp, { Connection } from 'amqplib/callback_api';
 import { Response } from "express";
 import EnvironmentConfig from "../../../configs/env";
-const config = EnvironmentConfig.devEnvironment()
+const config = EnvironmentConfig.devEnvironment();
 /**.
  * Broker for async messaging
  */
@@ -13,7 +13,7 @@ class MessageBroker {
 
   constructor() {
     this.connection;
-    this.queues = 'customer-ids';
+    this.queues = config.queues;
     this.channel;
     this.url = config.brokerUrl;
   }

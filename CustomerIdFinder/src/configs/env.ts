@@ -1,19 +1,23 @@
 import dotenv from "dotenv";
 class EnvironmentConfig {
-    public dotenv: any;
-    public devPort: string;
-    public brokerUrl: string;
+    dotenv: any;
+    devPort: string;
+    brokerUrl: string;
+    queues: string;
+
     constructor() {
         this.dotenv = dotenv.config();
         this.devPort = process.env.devPort;
         this.brokerUrl = process.env.brokerUrl;
+        this.queues = process.env.queues;
     }
 
 
     devEnvironment () {
         return {
            port: this.devPort,
-           brokerUrl: this.brokerUrl
+           brokerUrl: this.brokerUrl,
+           queues: this.queues
         }
     }
 
