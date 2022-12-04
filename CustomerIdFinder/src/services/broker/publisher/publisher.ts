@@ -1,26 +1,28 @@
 import amqp, { Connection } from 'amqplib/callback_api';
 import { Response } from "express";
-/**
+import EnvironmentConfig from "../../../configs/env";
+const config = EnvironmentConfig.devEnvironment()
+/**.
  * Broker for async messaging
  */
 class MessageBroker {
   queues: any;
   channel: any;
-  uri: string;
+  url: string;
   connection: any;
 
   constructor() {
     this.connection;
     this.queues = 'customer-ids';
     this.channel;
+    this.url = config.brokerUrl;
   }
 
   /**
    * Initialize connection to broker and send data to quue
    */
   init(msg: any, res: Response) {
-    console.log(msg);
-    this.connection =  amqp.connect(`amqps://gvrctuwy:kHwKHgERwO_ChSbi9xigEvBZDnVpV99t@rattlesnake.rmq.cloudamqp.com/gvrctuwy`, (errorConnect: Error, connection: Connection) => {
+    this.connection =  amqp.connect(this.url, (errorConnect: Error, connection: Connection) => {
       if (errorConnect) {
         // Log connection error to winston
         res.status(502).json({

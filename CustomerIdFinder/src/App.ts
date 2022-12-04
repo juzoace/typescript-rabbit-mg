@@ -7,6 +7,7 @@ class App {
     constructor() {
         this.express = express();
         this.loadRoutes();
+        
     }
 
     private loadRoutes() : void {

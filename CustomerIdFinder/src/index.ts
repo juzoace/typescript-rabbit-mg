@@ -1,4 +1,7 @@
-import app from './App'
-app.listen(3000, () => {
-    console.log("Server connected")
-})
+import app from "./App";
+import EnvironmentConfig from './configs/env';
+const config = EnvironmentConfig.devEnvironment();
+
+app.listen(config.port, () => {
+    console.log("Server connected");
+});
