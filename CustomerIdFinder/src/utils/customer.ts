@@ -1,53 +1,58 @@
 import { readFileSync } from "fs";
 import { resolve } from 'path';
+import { fileErrorLogger, implicitErrorLogger } from './logger';
 
 class CustomerUtility {
-    customerData: any;
+
     distanceInKm: number;
+
     constructor() {
-        this.customerData;
+
         this.distanceInKm = 100;
+
     }
 
-getDataFromFile() {
+  getDataFromFile() {
 
-        try {
-            // Get data from txt file
-            var allFileContents: any;
+    try {
+            
+      var allFileContents: any;
                 
-            allFileContents = readFileSync(resolve(__dirname, '../../customers.txt'), 'utf-8');
+      allFileContents = readFileSync(resolve(__dirname, '../../customers.txt'), 'utf-8');
             
-            const arrayOfCloseCustomersId = [];
+      const arrayOfCloseCustomersId = [];
             
-            allFileContents.split(/\r?\n/).forEach((line: string) =>  {
+      allFileContents.split(/\r?\n/).forEach((line: string) =>  {
             
-            const splitTextToArray = line.split(",");
+        const splitTextToArray = line.split(",");
             
-            if (line.length < 70 ) {
-                //  Error with particular line // log to winston
-                // console.log('inconsistent line')
+        if (line.length < 70 ) {
+
+          fileErrorLogger.info(`CustomerId ${line} details incorrect`);
+
                 
-            } else {
-                const customerId = splitTextToArray[0].replace(/\s/g, "").slice(3);
-                const customerLatitude = parseFloat(splitTextToArray[1].replace(/\s/g, "").slice(4));
-                const customerLongitude = parseFloat(splitTextToArray[2].replace(/\s/g, "").slice(5));
-                const distanceFromFintech = this.distance( 52.493256, 13.446082, customerLatitude, customerLongitude, "KM");
+          } else {
+
+          const customerId = splitTextToArray[0].replace(/\s/g, "").slice(3);
+          const customerLatitude = parseFloat(splitTextToArray[1].replace(/\s/g, "").slice(4));
+          const customerLongitude = parseFloat(splitTextToArray[2].replace(/\s/g, "").slice(5));
+          const distanceFromFintech = this.distance( 52.493256, 13.446082, customerLatitude, customerLongitude, "KM");
         
-                if (distanceFromFintech <= 100 ) {
-                    arrayOfCloseCustomersId.push(customerId)
-                }
+            if (distanceFromFintech <= 100 ) {
+              arrayOfCloseCustomersId.push(customerId)
             }
+        }
 
-            });
+      });
             
-            return arrayOfCloseCustomersId.sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
+      return arrayOfCloseCustomersId.sort((a, b) => b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }))
         
         } catch(err) {
 
-            if (err.code === "ENOENT") {
-                // log to winston
-                console.log("file not found")
-            }
+          if (err.code === "ENOENT") {
+
+            implicitErrorLogger.info(`${err}`);
+        }
 
         }
 
