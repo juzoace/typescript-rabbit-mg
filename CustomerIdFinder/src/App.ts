@@ -1,6 +1,4 @@
-// import dotenv from 'dotenv'
-// import bodyParser from 'body-parser'
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 // import * as winston from 'winston';
 import router from "./routes";
 
@@ -9,6 +7,7 @@ class App {
     constructor() {
         this.express = express();
         this.loadRoutes();
+        
     }
 
     private loadRoutes() : void {
