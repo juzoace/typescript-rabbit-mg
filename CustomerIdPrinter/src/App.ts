@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express, Request, Response } from "express";
 import { subscriber } from "./services/broker/subscriber";
 
 
