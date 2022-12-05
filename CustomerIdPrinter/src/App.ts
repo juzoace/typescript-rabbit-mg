@@ -1,11 +1,13 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import { subscriber } from "./services/broker/subscriber";
-
+import helmet from "helmet";
 
 class App {
-    public express: Express;
+    express: Express;
+    helmet: any
     constructor() {
         this.express = express();
+        this.helmet = helmet();
         this.loadRoutes();
     }
 
