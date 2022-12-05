@@ -1,8 +1,6 @@
-// import dotenv from 'dotenv'
-// import bodyParser from 'body-parser'
-import express, { Express, Request, Response } from 'express';
-// import * as winston from 'winston';
+import express, { Express } from 'express';
 import router from "./routes";
+import helmet from "helmet";
 
 class App {
     public express: Express;
