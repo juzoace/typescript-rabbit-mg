@@ -9,7 +9,7 @@ This is a backend program with the following functionality:
 ### 
 * Service 1: CustomerIdFinder service (located at "typescript-rabbit-mq/CustomerIdFinder") is responsible for extracting the information from a text file (customers.txt), selects the customers which are within a 100km radius (of a reference location using the popular Great-Circle-Distance algorithm), sorts the data alphabetially and sends it to a RabitMQ broker which sends it to a queue.
 ### 
-* Service 2: CustomerIdPrinter service (located at "typescript-rabbit-mq/CustomerIdFinder") is a subscriber to the queue in RabbitMQ and it is responsible for pulling in data from the queue 
+* Service 2: CustomerIdPrinter service (located at "typescript-rabbit-mq/CustomerIdPrinter") is a subscriber to the queue in RabbitMQ and it is responsible for pulling in data from the queue 
 ### 
 * The two services are developed using typescript and node/express.js
 
