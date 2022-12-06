@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  CustomerIdFinder:
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports: 
+      - 6000:6000 
+    command: npm run dev
