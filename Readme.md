@@ -1,4 +1,7 @@
 ## General Overview
+
+<img width="529" alt="Screenshot 2024-02-07 003118" src="https://github.com/juzoace/typescript-rabbit-mq/assets/48396169/18fd5eac-6d96-4ce1-93df-2769d8671929">
+
 This is a backend program with the following functionality:
 ### 
 * It extracts a list of customers' location info from a txt file, selects the customers which are within a 100km radius of a particular location  and sends the result.
